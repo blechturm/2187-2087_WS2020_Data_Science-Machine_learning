@@ -1,0 +1,80 @@
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+
+\mode<presentation>
+
+%\setbeamertemplate{sections/subsections in toc}[ball unnumbered]
+\setbeamertemplate{items}[default]
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\defbeamertemplate*{section in toc}{wu theme}
+{\leavevmode\leftskip=1em%
+  \textcolor{wulightblue}{%
+    {\scriptsize\raise1.25pt\hbox{%
+        \donotcoloroutermaths$\blacktriangleright$}%triangle
+    }
+  }~\inserttocsection\par
+}
+
+\defbeamertemplate*{subsection in toc}{wu theme}
+{
+  \leavevmode\leftskip=2em%
+  \textcolor{wulightblue}{%
+    {\tiny\raise1.5pt\hbox{%
+        \donotcoloroutermaths$\blacktriangleright$}%triangle
+    }
+  }~\inserttocsubsection\par
+}
+
+\defbeamertemplate*{subsubsection in toc}{wu theme}
+{
+  \leavevmode\normalsize\usebeamerfont{subsection in toc}\leftskip=3em%
+  \textcolor{wulightblue}{%
+    {\tiny\raise1.5pt\hbox{%
+        \donotcoloroutermaths$\blacktriangleright$}%triangle
+    }
+  }~\usebeamerfont{subsubsection in toc}\inserttocsubsubsection\par
+}
+
+
+\defbeamertemplate*{part page}{}[1][]
+{
+  \usebeamertemplate*{frametitle}
+  \vskip 0.5em\par
+  \hbox{%
+      \begin{beamercolorbox}[wd=\paperwidth,ht=.85\paperheight,sep=.7cm,left,#1]{part title}
+        \usebeamerfont{part name}{%
+          \usebeamercolor[fg]{part name}\bfseries\partname~\insertromanpartnumber}\\
+        \usebeamerfont{part title}\insertpart\par
+        \vskip 5.7cm
+      \end{beamercolorbox}
+  }
+}
+
+
+% \setbeamertemplate{block begin}{
+% 	\vskip.75ex
+% 	\begin{beamercolorbox}[rounded=true,shadow=false,sep=0.0em,leftskip=0.1em]{block title}%
+% 		\usebeamerfont*{block title}{\insertblocktitle}%
+
+% 	\end{beamercolorbox}\vskip-0.1em%
+% 	\usebeamerfont{block body}%
+% 	\begin{beamercolorbox}[rounded=true,shadow=false,sep=0.0em,leftskip=0.0cm]{block body}%
+% }
+% \setbeamertemplate{block end}
+% {
+% 	\end{beamercolorbox}
+% 	\vskip0.6em
+% }
+
+
+\mode<all>
+
+%%% Local Variables: 
+%%% TeX-master: "~/texmf/tex/latex/beamer/test/test.tex"
+%%% End: 

@@ -1,0 +1,71 @@
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\RequirePackage{ifthen}
+
+\mode<presentation>
+
+\usefonttheme{default}
+\usepackage{themes/beamercolorthemewunew}
+\usepackage{themes/beamerinnerthemewunew}
+\usepackage{themes/beamerouterthemewunew}
+
+\setbeamertemplate{headline}[default]
+
+\AtBeginPart{%
+  \ifthenelse{\isundefined{\includePartPages}}{}{  %% if command def
+    %% automatically add part pages when Part begins:
+    { % block to bound effect of removing footline
+      \setbeamertemplate{footline}{}  % no footline on part slides
+      \begin{frame}
+        \partpage
+      \end{frame}
+    }
+  }
+  \ifthenelse{\isundefined{\includeTocAtBeginPart}}{}{  %% if command def
+    %% automatically also generate Outline slide with toc after Part begins
+    \begin{frame}{Outline}
+      \phantom{haha}%necessary to get the title typeset
+      %
+      {\Large \partname~\insertromanpartnumber: \insertpart\\}
+      %
+      \tableofcontents
+    \end{frame}
+  }
+}
+
+\AtBeginSection{%
+  \ifthenelse{\isundefined{\includeTocAtBeginSection}}{}{  %% if command def
+    %% automatically also generate Outline slide with toc after Section begins
+    \begin{frame}{Outline}
+      \phantom{haha}%necessary to get the title typeset
+      %
+      {\Large \partname~\insertromanpartnumber: \insertpart\\}
+      %
+      \tableofcontents[currentsection]
+    \end{frame}
+  }
+}
+
+\let\maketitleold\maketitle
+\renewcommand{\maketitle}{ 
+  {  % block to bound effect of removing footline
+  \setbeamertemplate{footline}{}  % no footline on title slide
+  \begin{frame}
+    \maketitleold
+  \end{frame}
+  }  % end block
+}
+
+
+% In case you want to use a logo (e.g. in png format):
+\pgfdeclareimage[height=0.7cm]{university-logo}{art/wulogo_karbon_2}
+\logo{\pgfuseimage{university-logo}}
+\pgfdeclareimage[height=2cm]{university-logo-large}{art/wulogo_karbon_2}
+
+\mode
+<all>

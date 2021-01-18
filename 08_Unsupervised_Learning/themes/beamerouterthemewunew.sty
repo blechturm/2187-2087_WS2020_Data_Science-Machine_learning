@@ -1,0 +1,120 @@
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\RequirePackage{ifthen}
+
+\mode<presentation>
+
+\setbeamercolor*{author in head/foot}{parent=palette tertiary}
+\setbeamercolor*{title in head/foot}{parent=palette secondary}
+\setbeamercolor*{date in head/foot}{parent=palette primary}
+
+\setbeamercolor*{section in head/foot}{parent=palette tertiary}
+\setbeamercolor*{subsection in head/foot}{parent=palette primary}
+
+\definecolor{light-gray}{gray}{0.5}
+
+\defbeamertemplate*{footline}{wu theme}
+{%
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.9\paperwidth,ht=2.25ex,dp=1ex,left]{footlineelement}%
+    \parbox{.9\paperwidth}{%  parbox to avoid nebulously appearing \hfill after this line
+%      \usebeamerfont{footlineelement}%
+      \hspace*{2ex}\ifthenelse{\thepart>0}%
+              {\partname~\insertromanpartnumber: \insertpart}{}% print ``part'' only if exists
+              \hfill\insertsection\hspace*{.1em}%  hspace to account for fixing -.1em below
+    }%
+  \end{beamercolorbox}%
+  \hskip -0.1em  % removes tiny space between the two colorboxes
+  \begin{beamercolorbox}[wd=.11\paperwidth,ht=2.25ex,dp=1ex,right]{footlineelement}%
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}  %
+  \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+\defbeamertemplate*{headline}{wu theme}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{subsection in head/foot}%
+    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead%
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+
+%\newlength{\framewidth}
+%\setlength{\framewidth}{0.95\paperwidth}
+
+% Slide Title --> with logo
+\setbeamertemplate{frametitle}
+{
+  \leavevmode%
+  \vskip -1.4em%
+  \hbox{%
+    \hskip -.8em%
+    \begin{beamercolorbox}[wd=.81\paperwidth,ht=4ex,dp=2.5ex,left,leftskip=1em,sep=0em,
+        shadow=false,colsep=0ex]{frametitle}%
+      \usebeamerfont{frametitle}\parbox{.77\paperwidth}{\insertframetitle}%
+    \end{beamercolorbox}%
+    \hskip -0.1em  % removes tiny space between the two colorboxes
+    \begin{beamercolorbox}[wd=.2\paperwidth,ht=4ex,dp=2.5ex,right,rightskip=0.5cm,sep=-.2cm,
+        shadow=false]{frametitle}%
+      \insertlogo%
+    \end{beamercolorbox}%
+  }%
+}
+
+
+% Title page: default
+\defbeamertemplate*{title page}{wu}[1][]
+{
+  %\vfill
+  \vskip -0.5em\par
+  \hbox{%
+    % \begin{flushright}
+    \begin{beamercolorbox}[wd=1.0\paperwidth,sep=1cm,right,#1,ht=.5\paperheight]{logo}
+      \vskip2cm
+      \pgfimage[height=2.5cm]{art/wulogo_karbon_2}%
+    \end{beamercolorbox}%
+  }%
+  \vskip0.5em\par
+  \hbox{%
+    \begin{beamercolorbox}[wd=1.0\paperwidth,sep=.7cm,left,#1,ht=.5\paperheight]{title}
+      \usebeamerfont{title}{\huge \inserttitle}\\[2ex]
+      \ifthenelse{\isundefined{\programme}}{
+        \ifthenelse{\isundefined{\course}}{
+          % neither \course nor \programme defined, do nothing.
+        }{ % only \course defined, print only that:
+          \usebeamerfont{title}{\normalsize \course\\[2ex]}
+        }
+      }{
+        \ifthenelse{\isundefined{\course}}{
+          % only \programme defined, print only that:
+          \usebeamerfont{title}{\normalsize \programme\\[2ex]}
+        }{ % both \course and \programme defined, print both:
+          \usebeamerfont{title}{\normalsize \programme \\ \course\\[2ex]}
+        }
+      }
+      \usebeamerfont{title}{\Large \insertauthor, \insertinstitute\\ \normalsize \today\\}
+    \end{beamercolorbox}
+  }
+    %{\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+    % \end{flushright}
+  \vfill
+}
+
+
+\setbeamersize{text margin left=1em,text margin right=1em}
+
+\mode
+<all>
